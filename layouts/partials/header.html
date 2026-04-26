@@ -16,11 +16,11 @@
   <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background/40 pointer-events-none"></div>
 </div>
 
-<!-- 横向 Nav：sticky 贴顶；初始透明（融合 banner），滚动后变实色 -->
+<!-- 横向 Nav：sticky 贴顶；始终保留淡淡背景，滚动后变更实 -->
 <header x-data="{ scrolled: false }"
         @scroll.window.throttle.16ms="scrolled = window.scrollY > 120"
-        :class="scrolled ? 'bg-background/85 backdrop-blur-md border-border' : 'bg-transparent border-transparent'"
-        class="sticky top-0 z-40 -mt-14 border-b transition-colors duration-200">
+        :class="scrolled ? 'bg-background/95 border-border' : 'bg-background/55 border-transparent'"
+        class="sticky top-0 z-40 -mt-14 border-b backdrop-blur-md transition-colors duration-200">
   <div class="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
     <div class="flex h-14 items-center justify-between gap-4">
 
@@ -105,3 +105,26 @@
       </div>
     </div>
 </header>
+
+{{- /* 文章副 nav：滚过 banner 后滑入，显示当前文章标题，点击回顶 */ -}}
+{{- if .IsPage }}
+<div x-data="{ show: false }"
+     @scroll.window.throttle.16ms="show = window.scrollY > 280"
+     :class="show ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'"
+     class="fixed top-14 inset-x-0 z-30 bg-background/90 backdrop-blur-md border-b border-border transition-all duration-200">
+  <div class="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+    <div class="flex h-10 items-center gap-3 text-sm">
+      <span class="text-muted-foreground/60 shrink-0">{{ partial "icon.html" (dict "name" "file-text" "class" "size-3.5") }}</span>
+      <button type="button" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+              class="flex-1 min-w-0 text-left font-medium text-foreground/85 hover:text-foreground truncate transition-colors">
+        {{ .Title }}
+      </button>
+      <button type="button" @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+              class="shrink-0 inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              :title="'{{ i18n "backToTop" | default "回到顶部" }}'">
+        ↑ <span class="hidden sm:inline">{{ i18n "backToTop" | default "回到顶部" }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+{{- end }}

@@ -87,6 +87,9 @@ other = "查看更多"
 [tocTitle]
 other = "目录"
 
+[backToTop]
+other = "回到顶部"
+
 [copy]
 other = "复制"
 
