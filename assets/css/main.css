@@ -293,6 +293,21 @@
   font-weight: 500;
 }
 
+/* ===== 平滑滚动（TOC 锚点点击 + 任意 hash 跳转）===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 标题在跳转后避开 sticky nav 的遮挡 */
+.prose-amigoer :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 5rem;
+}
+
+/* ===== 跨页切换：现代浏览器自动 fade 过渡（Firefox 暂不支持，会优雅降级）===== */
+@view-transition {
+  navigation: auto;
+}
+
 /* ===== 卡片 cover：纸感颗粒（噪点）叠加，让渐变不死板 ===== */
 .cover-noise::after {
   content: "";
