@@ -81,6 +81,9 @@ other = "Comments"
 [viewAll]
 other = "All →"
 
+[viewMore]
+other = "View more"
+
 [copy]
 other = "Copy"
 

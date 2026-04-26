@@ -81,6 +81,9 @@ other = "评论"
 [viewAll]
 other = "全部 →"
 
+[viewMore]
+other = "查看更多"
+
 [copy]
 other = "复制"
 

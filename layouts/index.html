@@ -111,6 +111,16 @@
         {{ partial "card-post.html" . }}
       {{- end -}}
     {{ end }}
+
+    {{ if gt (len $allItems) 8 }}
+      <div class="pt-2 text-center">
+        <a href="{{ "/archives/" | relURL }}"
+           class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground border border-border rounded-md hover:border-foreground/30 hover:bg-accent/40 transition-colors">
+          {{ i18n "viewMore" }}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    {{ end }}
   </section>
   {{ end }}
 </div>
