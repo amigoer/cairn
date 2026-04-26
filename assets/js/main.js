@@ -140,10 +140,19 @@ document.addEventListener("alpine:init", () => {
     }
   });
 
-  // TOC scroll-spy
+  // TOC scroll-spy + 滚动状态（用于错开 banner）
   Alpine.data("tocSpy", () => ({
     activeId: "",
+    scrolled: false,
     init() {
+      // 滚动状态：超过 banner 高度后让 TOC 上移到 top-24
+      const onScroll = () => {
+        this.scrolled = window.scrollY > 200;
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // 当前章节高亮
       const headings = document.querySelectorAll(
         ".prose-amigoer h2, .prose-amigoer h3, .prose-amigoer h4"
       );

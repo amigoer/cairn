@@ -1,0 +1,9 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cairn">
+  <title>Cairn</title>
+  <rect width="32" height="32" rx="7" fill="#f9f5ec"/>
+  <rect x="8" y="23" width="16" height="5" rx="2" fill="#2b2b2b"/>
+  <rect x="10" y="19" width="12" height="4" rx="2" fill="#404040"/>
+  <rect x="12" y="15" width="8" height="4" rx="2" fill="#d97757"/>
+  <rect x="13" y="11" width="6" height="4" rx="2" fill="#2b2b2b"/>
+  <ellipse cx="16" cy="9" rx="2" ry="1.2" fill="#5e5e5e"/>
+</svg>

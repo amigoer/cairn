@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./images/favicon.svg" alt="Cairn" width="72" />
+</p>
+
 # Cairn
 
 > A minimal, content-rich personal hub theme for Hugo.

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./images/favicon.svg" alt="Cairn" width="72" />
+</p>
+
 # Cairn
 
 > 极简、内容向的 Hugo 个人站点主题。
