@@ -90,8 +90,8 @@
       <a href="{{ "/posts/" | relURL }}" class="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">{{ i18n "viewAll" }}</a>
     </div>
 
-    {{- /* 卡片尺寸由 front matter `cardSize` 控制（feature/standard/compact/note）
-           未指定时：项目恒为 note；其他按"有图→standard，无图→note"自动决定 */ -}}
+    {{- /* 卡片样式由 front matter `cardSize` 控制（feature/standard/right/compact/note）
+           未指定时：项目恒为 note；其他按"有图→standard，无图→compact"自动决定 */ -}}
     {{ range $items }}
       {{- $kind := upper .Section -}}
       {{- $variant := partial "pick-card.html" . -}}
@@ -99,6 +99,8 @@
         {{ partial "card-note.html" (dict "page" . "kind" "PROJECT" "accent" "brand") }}
       {{- else if eq $variant "feature" -}}
         {{ partial "card-feature.html" . }}
+      {{- else if eq $variant "right" -}}
+        {{ partial "card-right.html" . }}
       {{- else if eq $variant "compact" -}}
         {{ partial "card-compact.html" . }}
       {{- else if eq $variant "note" -}}

@@ -1,11 +1,12 @@
-{{- /* 卡片尺寸：完全由 front matter `cardSize` 控制
+{{- /* 卡片样式：完全由 front matter `cardSize` 控制
        预设：
        - "feature"  大卡（顶部 banner 大图 + 标题 / 摘要 / 标签）
-       - "standard" 中卡（左小图 + 右内容，默认）
-       - "compact"  紧凑卡（无图，标题 + 摘要 + 标签）
-       - "note"     小卡（无图，单行：日期 + 类型 + 标题）
+       - "standard" 左侧图卡（左图 + 右内容，默认）
+       - "right"    右侧图卡（左内容 + 右图）
+       - "compact"  无图卡（标题 + 摘要 + 标签）
+       - "note"     单行卡（用于项目等短条目）
 
-     未指定时默认：有图 → standard，无图 → note */ -}}
+     未指定时默认：有图 → standard，无图 → compact */ -}}
 
 {{- $cardSize := .Params.cardSize | default "" -}}
 {{- $result := "" -}}
@@ -30,7 +31,7 @@
   {{- if $hasImage -}}
     {{- $result = "standard" -}}
   {{- else -}}
-    {{- $result = "note" -}}
+    {{- $result = "compact" -}}
   {{- end -}}
 {{- end -}}
 
