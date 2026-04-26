@@ -5,7 +5,7 @@
 
 {{- $headings := .Fragments.Headings -}}
 {{- if $headings -}}
-<aside class="hidden xl:block fixed top-24 right-6 w-56 max-h-[calc(100vh-8rem)] overflow-y-auto pr-1"
+<aside class="hidden xl:block fixed top-24 right-6 w-56 max-h-[calc(100vh-8rem)] overflow-y-auto bg-background/85 backdrop-blur-md border border-border rounded-lg p-4"
        x-data="tocSpy">
   <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-3 pb-2 border-b border-border">
     {{ i18n "tocTitle" }}
