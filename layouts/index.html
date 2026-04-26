@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- /* 首页：刊头（含个人信息）+ 混合 feed
-       feed 范围由 site.Params.homeSections 控制，默认 posts / projects / reading / watching */ -}}
-{{- $sections := .Site.Params.homeSections | default (slice "posts" "projects" "reading" "watching") -}}
+       feed 范围由 site.Params.mainSections 控制（Hugo 通用约定），未配置时默认 posts */ -}}
+{{- $sections := .Site.Params.mainSections | default (slice "posts") -}}
 {{- $allItems := where .Site.RegularPages "Section" "in" $sections -}}
 {{- $items := first 8 ($allItems.ByDate.Reverse) -}}
 
@@ -89,7 +89,7 @@
         <h2 class="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground">{{ i18n "homeRecentPosts" }}</h2>
         <span class="text-[10px] font-mono text-muted-foreground/60 tabular-nums">{{ len $items }} {{ i18n "posts" }}</span>
       </div>
-      <a href="{{ "/posts/" | relURL }}" class="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">{{ i18n "viewAll" }}</a>
+      <a href="{{ "/archives/" | relURL }}" class="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">{{ i18n "viewAll" }}</a>
     </div>
 
     {{- /* 卡片样式由 front matter `cardSize` 控制（feature/standard/right/compact/note）

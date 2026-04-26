@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $sections := slice "posts" "travel" -}}
+{{- $sections := .Site.Params.mainSections | default (slice "posts") -}}
 {{- $allPosts := where .Site.RegularPages "Section" "in" $sections -}}
 {{- $totalCount := len $allPosts -}}
 {{- $byYear := $allPosts.GroupByDate "2006" -}}
