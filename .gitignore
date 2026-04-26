@@ -1,0 +1,28 @@
+# Hugo
+public/
+resources/
+.hugo_build.lock
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# exampleSite local builds
+exampleSite/public/
+exampleSite/resources/
+exampleSite/.hugo_build.lock

@@ -1,0 +1,18 @@
+name = "Cairn"
+license = "MIT"
+licenselink = "https://github.com/amigoer/cairn/blob/main/LICENSE"
+description = "A minimal, content-rich personal hub theme for Hugo. Magazine-style hero, mixed feed, books / movies / projects shelves, friend links, search and dark mode — built with Tailwind v4 and Alpine.js."
+homepage = "https://github.com/amigoer/cairn"
+demosite = "https://www.amigoer.com"
+tags = ["minimal", "blog", "portfolio", "personal", "magazine", "shadcn", "tailwind", "alpine"]
+features = ["dark-mode", "tags", "categories", "archives", "rss", "search", "comments", "i18n-ready", "douban", "friend-links"]
+min_version = "0.128.0"
+
+[author]
+  name = "Amigoer"
+  homepage = "https://www.amigoer.com"
+
+[original]
+  author = "Amigoer"
+  homepage = "https://www.amigoer.com"
+  repo = "https://github.com/amigoer/cairn"
