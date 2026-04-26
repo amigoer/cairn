@@ -2,7 +2,7 @@
        缩进按 (Level - 2) × 0.75rem，h2 = 0，h3 = 0.75rem，h4 = 1.5rem */ -}}
 {{- $indent := mul (sub .Level 2) 0.75 -}}
 <a href="#{{ .ID }}"
-   class="toc-link block py-1 text-muted-foreground hover:text-foreground transition-colors line-clamp-1"
+   class="toc-link block py-1.5 text-muted-foreground hover:text-foreground transition-colors line-clamp-1"
    :data-active="isActive('{{ .ID }}')"
    style="padding-left: {{ $indent }}rem;">
   {{ .Title }}

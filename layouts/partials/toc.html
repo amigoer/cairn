@@ -5,13 +5,13 @@
 
 {{- $headings := .Fragments.Headings -}}
 {{- if $headings -}}
-<aside class="hidden xl:block fixed right-6 w-56 max-h-[calc(100vh-8rem)] overflow-y-auto pr-1 transition-[top] duration-200"
-       :class="scrolled ? 'top-24' : 'top-72'"
+<aside class="hidden xl:block fixed right-6 w-56 max-h-[calc(100vh-10rem)] overflow-y-auto pr-1 transition-[top] duration-200"
+       :class="scrolled ? 'top-32' : 'top-72'"
        x-data="tocSpy">
   <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-3 pb-2 border-b border-border">
     {{ i18n "tocTitle" }}
   </div>
-  <nav class="text-[13px] space-y-0.5">
+  <nav class="text-[13px] space-y-1">
     {{ range $headings }}
       {{ partial "toc-item.html" . }}
     {{ end }}
