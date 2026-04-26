@@ -16,11 +16,11 @@
   <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-background/40 pointer-events-none"></div>
 </div>
 
-<!-- 横向 Nav：sticky 贴顶；始终保留淡淡背景，滚动后变更实 -->
+<!-- 横向 Nav：sticky 贴顶；初始透明（融合 banner），滚动后变实色 -->
 <header x-data="{ scrolled: false }"
         @scroll.window.throttle.16ms="scrolled = window.scrollY > 120"
-        :class="scrolled ? 'bg-background/95 border-border' : 'bg-background/55 border-transparent'"
-        class="sticky top-0 z-40 -mt-14 border-b backdrop-blur-md transition-colors duration-200">
+        :class="scrolled ? 'bg-background/85 backdrop-blur-md border-border' : 'bg-transparent border-transparent'"
+        class="sticky top-0 z-40 -mt-14 border-b transition-colors duration-200">
   <div class="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
     <div class="flex h-14 items-center justify-between gap-4">
 
@@ -62,7 +62,7 @@
         {{- range .Site.Params.socialIcons }}
           {{- if eq .name "github" -}}{{ $github = .url -}}{{- end -}}
         {{- end -}}
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1 xl:mr-60">
           {{- with $github }}
             <a href="{{ . }}" target="_blank" rel="noopener" title="Github" aria-label="Github"
                class="hidden md:inline-flex items-center gap-1.5 h-8 px-2 lg:px-2.5 rounded-md text-[13px] font-medium text-foreground/75 hover:text-foreground hover:bg-accent transition-colors">
