@@ -1,14 +1,14 @@
 ---
-title: "Hello, Cairn"
+title: "Hello, Almanac"
 date: 2026-04-20
-summary: "本博客的第一篇文章 —— 用 Cairn 主题搭起来的演示。"
-tags: ["hello", "cairn"]
+summary: "本博客的第一篇文章 —— 用 Almanac 主题搭起来的演示。"
+tags: ["hello", "almanac"]
 categories: ["随笔"]
 ---
 
 ## 你好，世界
 
-这是 Cairn 主题自带的示例文章。它演示了正文排版（`prose-cairn`）下的常见元素。
+这是 Almanac 主题自带的示例文章。它演示了正文 prose 排版下的常见元素。
 
 ### 段落
 
@@ -18,7 +18,7 @@ categories: ["随笔"]
 
 ```go
 func main() {
-    fmt.Println("Hello, Cairn")
+    fmt.Println("Hello, Almanac")
 }
 ```
 

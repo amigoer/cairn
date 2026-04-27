@@ -1,13 +1,13 @@
 {
-  "name": "cairn",
+  "name": "almanac",
   "version": "0.1.0",
   "description": "A minimal, content-rich personal hub theme for Hugo.",
   "license": "MIT",
   "author": "Amigoer",
-  "homepage": "https://github.com/amigoer/cairn",
+  "homepage": "https://github.com/amigoer/almanac",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amigoer/cairn.git"
+    "url": "https://github.com/amigoer/almanac.git"
   },
   "keywords": ["hugo", "hugo-theme", "tailwind", "alpinejs", "minimal", "blog", "portfolio"],
   "devDependencies": {

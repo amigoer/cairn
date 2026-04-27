@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="./images/favicon.svg" alt="Cairn" width="72" />
+  <img src="./images/favicon.svg" alt="Almanac" width="72" />
 </p>
 
-# Cairn
+# Almanac
 
 > A minimal, content-rich personal hub theme for Hugo.
 > Magazine-style hero · mixed feed · books / movies / projects shelves · friend links · search · dark mode.
 
 [简体中文](./README.zh-CN.md) · English
 
-A *cairn* is a stack of trail-marker stones — small markers of where you have been. This theme aims to be the same: a place to leave traces of what you read, watch, build and write.
+An *almanac* is a yearly book — a record of dates, observations and small markers of the year past. This theme aims to be the same: a place to leave traces of what you read, watch, build and write.
 
 ---
 
@@ -40,20 +40,20 @@ As a Git submodule (recommended):
 
 ```bash
 cd your-hugo-site
-git submodule add https://github.com/amigoer/cairn.git themes/cairn
+git submodule add https://github.com/amigoer/almanac.git themes/almanac
 ```
 
 Or as a Hugo Module (`go.mod`-based):
 
 ```bash
 hugo mod init github.com/yourname/your-site
-hugo mod get github.com/amigoer/cairn
+hugo mod get github.com/amigoer/almanac
 ```
 
 Or just clone:
 
 ```bash
-git clone https://github.com/amigoer/cairn.git themes/cairn
+git clone https://github.com/amigoer/almanac.git themes/almanac
 ```
 
 ### 2. Install build dependencies
@@ -75,13 +75,13 @@ module.exports = {
 
 ### 3. Configure `hugo.toml`
 
-The fastest way is to copy `themes/cairn/exampleSite/hugo.toml` and edit. The minimum is:
+The fastest way is to copy `themes/almanac/exampleSite/hugo.toml` and edit. The minimum is:
 
 ```toml
 baseURL = 'https://example.com/'
 languageCode = 'zh-cn'
 title = "Your Site"
-theme = 'cairn'
+theme = 'almanac'
 
 [params]
   author = "Your Name"
@@ -132,7 +132,7 @@ See [`exampleSite/`](./exampleSite/) for a fully working scaffold.
 
 ## Per-section frontmatter
 
-Cairn provides `archetypes/` for the four custom sections. After `theme = 'cairn'` is set, `hugo new posts/foo.md` will pick the right shape automatically.
+Almanac provides `archetypes/` for the four custom sections. After `theme = 'almanac'` is set, `hugo new posts/foo.md` will pick the right shape automatically.
 
 | Section      | Frontmatter (key fields)                                       |
 | ------------ | -------------------------------------------------------------- |
@@ -165,7 +165,7 @@ Brand color and surfaces are controlled by CSS variables defined in `assets/css/
 
 ### Tailwind utilities not auto-detected
 
-Cairn uses `@source inline()` to ensure data-driven utilities (e.g. dynamic `grid-cols-*`) are always generated, since Tailwind v4 only emits classes it can find in templates. Extend the inline list in `assets/css/main.css` if you add new dynamic utilities.
+Almanac uses `@source inline()` to ensure data-driven utilities (e.g. dynamic `grid-cols-*`) are always generated, since Tailwind v4 only emits classes it can find in templates. Extend the inline list in `assets/css/main.css` if you add new dynamic utilities.
 
 ## Search
 
@@ -179,7 +179,7 @@ The bundled `<script>` in `head.html` lazily loads `/pagefind/pagefind-ui.js` an
 
 ## Comments
 
-Cairn ships Waline integration. Set `params.waline.serverURL` in `hugo.toml` to enable comments on posts.
+Almanac ships Waline integration. Set `params.waline.serverURL` in `hugo.toml` to enable comments on posts.
 
 ## Browser support
 

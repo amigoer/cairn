@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="./images/favicon.svg" alt="Cairn" width="72" />
+  <img src="./images/favicon.svg" alt="Almanac" width="72" />
 </p>
 
-# Cairn
+# Almanac
 
 > 极简、内容向的 Hugo 个人站点主题。
 > 杂志风刊头 · 混合 feed · 书 / 影 / 项目 / 友链一应俱全 · 搜索 · 暗色模式。
 
 简体中文 · [English](./README.md)
 
-**Cairn** 在英文里是"路径上的石堆"—— 一种用石块堆出来的、提示走过此地的标记。
-本主题想做的事差不多：在你的数字花园里堆几块顺手的石头，把读 / 看 / 写 / 做留下痕迹。
+**Almanac** 在英文里是"年鉴 / 历书"——一本按年份记录天文、节气、农事和生活点滴的小册子。
+本主题想做的事差不多：在你的数字花园里留一本顺手的小书，把读 / 看 / 写 / 做按时序整齐地记录下来。
 
 ---
 
@@ -41,20 +41,20 @@
 
 ```bash
 cd your-hugo-site
-git submodule add https://github.com/amigoer/cairn.git themes/cairn
+git submodule add https://github.com/amigoer/almanac.git themes/almanac
 ```
 
 或作为 Hugo Module：
 
 ```bash
 hugo mod init github.com/yourname/your-site
-hugo mod get github.com/amigoer/cairn
+hugo mod get github.com/amigoer/almanac
 ```
 
 或者直接 clone：
 
 ```bash
-git clone https://github.com/amigoer/cairn.git themes/cairn
+git clone https://github.com/amigoer/almanac.git themes/almanac
 ```
 
 ### 2. 安装构建依赖
@@ -76,13 +76,13 @@ module.exports = {
 
 ### 3. 配置 `hugo.toml`
 
-最快的方式：拷贝 `themes/cairn/exampleSite/hugo.toml` 改改即可。最小可运行配置：
+最快的方式：拷贝 `themes/almanac/exampleSite/hugo.toml` 改改即可。最小可运行配置：
 
 ```toml
 baseURL = 'https://example.com/'
 languageCode = 'zh-cn'
 title = "你的站点"
-theme = 'cairn'
+theme = 'almanac'
 
 [params]
   author = "你的名字"
@@ -133,7 +133,7 @@ static/
 
 ## 各 section 的 frontmatter
 
-主题自带 `archetypes/`，配好 `theme = 'cairn'` 之后，`hugo new posts/foo.md` 会自动套对应的模板。
+主题自带 `archetypes/`，配好 `theme = 'almanac'` 之后，`hugo new posts/foo.md` 会自动套对应的模板。
 
 | Section      | Frontmatter 关键字段                                           |
 | ------------ | -------------------------------------------------------------- |
@@ -166,7 +166,7 @@ static/
 
 ### 数据驱动的 utility
 
-Cairn 用 Tailwind v4 的 `@source inline()` 显式声明那些"模板里出现不了、但运行时会用到"的 class（比如动态的 `grid-cols-*`）。如果你新加了类似的动态 utility，把名字添到 `assets/css/main.css` 的 `@source inline()` 列表里。
+Almanac 用 Tailwind v4 的 `@source inline()` 显式声明那些"模板里出现不了、但运行时会用到"的 class（比如动态的 `grid-cols-*`）。如果你新加了类似的动态 utility，把名字添到 `assets/css/main.css` 的 `@source inline()` 列表里。
 
 ## 搜索
 
@@ -180,7 +180,7 @@ npx pagefind --site public
 
 ## 评论
 
-Cairn 集成 Waline。在 `hugo.toml` 配置 `params.waline.serverURL` 即可启用文章页评论。
+Almanac 集成 Waline。在 `hugo.toml` 配置 `params.waline.serverURL` 即可启用文章页评论。
 
 ## 浏览器支持
 

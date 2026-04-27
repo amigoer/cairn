@@ -1,8 +1,8 @@
 baseURL = 'https://example.com/'
 languageCode = 'zh-cn'
 defaultContentLanguage = "zh"
-title = "Cairn Demo"
-theme = 'cairn'
+title = "Almanac Demo"
+theme = 'almanac'
 
 enableRobotsTXT = true
 enableEmoji = true

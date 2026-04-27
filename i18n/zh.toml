@@ -1,4 +1,4 @@
-# Cairn 主题 - 中文 UI 字符串
+# Almanac 主题 - 中文 UI 字符串
 # 用于 Hugo `{{ i18n "key" }}` 调用。defaultContentLanguage = "zh" 时启用。
 
 # ===== 导航 =====

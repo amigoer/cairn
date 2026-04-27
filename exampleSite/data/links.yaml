@@ -17,8 +17,8 @@ groups:
     name: 好友
     desc: 现实中认识的朋友，或聊得来的同道中人。
     items:
-      - name: Cairn
-        url: https://github.com/amigoer/cairn
+      - name: Almanac
+        url: https://github.com/amigoer/almanac
         desc: 极简、内容向的个人站点 Hugo 主题。
         avatar: ""
 

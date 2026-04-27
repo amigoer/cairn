@@ -1,6 +1,6 @@
-<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cairn">
-  <title>Cairn</title>
-  <desc>Stacked stones marking a path</desc>
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Almanac">
+  <title>Almanac</title>
+  <desc>Stacked layers — a yearly record</desc>
 
   <path d="M 68 198 Q 68 184 84 184 L 172 184 Q 188 184 188 198 L 188 210 Q 188 222 172 222 L 84 222 Q 68 222 68 210 Z" fill="#2b2b2b"/>
   <path d="M 82 162 Q 82 150 96 150 L 162 150 Q 176 150 176 162 L 176 178 Q 176 188 162 188 L 96 188 Q 82 188 82 178 Z" fill="#404040"/>
