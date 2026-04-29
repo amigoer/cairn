@@ -28,6 +28,13 @@
     (dict "url" "/projects/" "name" (i18n "navProjects") "icon" "folder")
     (dict "url" "/douban/" "name" (i18n "navDouban") "icon" "book-open")
     (dict "url" "/archives/" "name" (i18n "navArchives") "icon" "archive")
+  -}}
+  {{- with site.GetPage "/moments" -}}
+    {{- if gt (len .Pages) 0 -}}
+      {{- $navMain = $navMain | append (dict "url" "/moments/" "name" (i18n "navMoments") "icon" "sparkles") -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $navMain = $navMain | append
     (dict "url" "/about/" "name" (i18n "navAbout") "icon" "user")
     (dict "url" "/links/" "name" (i18n "navLinks") "icon" "external-link")
   -}}

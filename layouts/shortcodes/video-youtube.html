@@ -1,0 +1,21 @@
+{{- /*
+  YouTube 视频外链播放器
+  用法：
+    {{< video-youtube id="dQw4w9WgXcQ" >}}
+    {{< video-youtube id="dQw4w9WgXcQ" start="30" >}}
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- $start := .Get "start" | default "0" -}}
+{{- if $id -}}
+<div class="my-4 not-prose overflow-hidden rounded-md border border-border bg-black">
+  <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+    <iframe class="absolute inset-0 size-full"
+            src="https://www.youtube-nocookie.com/embed/{{ $id }}?start={{ $start }}&rel=0"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="YouTube · {{ $id }}"></iframe>
+  </div>
+</div>
+{{- end -}}

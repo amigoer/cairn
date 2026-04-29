@@ -1,0 +1,26 @@
+{{- /*
+  网易云音乐外链播放器
+  用法：
+    {{< music-163 id="2147051091" >}}              单曲（默认）
+    {{< music-163 id="123456" type="playlist" >}}  歌单
+    {{< music-163 id="123456" type="album" >}}     专辑
+    {{< music-163 id="123456" auto="1" height="86" >}}
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- $type := .Get "type" | default "song" -}}
+{{- $auto := .Get "auto" | default "0" -}}
+{{- $height := .Get "height" | default "86" -}}
+{{- $t := "2" -}}
+{{- if eq $type "playlist" }}{{ $t = "0" }}{{ end -}}
+{{- if eq $type "album" }}{{ $t = "3" }}{{ end -}}
+{{- if $id -}}
+<div class="my-4 not-prose overflow-hidden rounded-md border border-border bg-card">
+  <iframe class="block w-full"
+          frameborder="no" border="0" marginwidth="0" marginheight="0"
+          height="{{ if eq $type "song" }}86{{ else }}{{ $height }}{{ end }}"
+          src="//music.163.com/outchain/player?type={{ $t }}&id={{ $id }}&auto={{ $auto }}&height={{ $height }}"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="NetEase Cloud Music · {{ $type }} {{ $id }}"></iframe>
+</div>
+{{- end -}}

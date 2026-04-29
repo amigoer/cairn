@@ -1,4 +1,5 @@
-{{ if .IsPage }}
+{{- /* Fancybox：文章正文图片自动包裹；动态(moments)列表页也启用 */ -}}
+{{ if or .IsPage (eq .Section "moments") }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <style>
@@ -7,30 +8,30 @@
         text-decoration: none;
         border-bottom: none;
         box-shadow: none !important;
+    }
+    /* 文章正文里的图片包裹层撑满；动态网格里的保持自身 aspect-ratio */
+    .prose-amigoer a[data-fancybox] {
         line-height: 0;
     }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll(".prose-amigoer img");
-
-        images.forEach(img => {
+        // 文章正文图片：自动包裹成 <a data-fancybox="gallery">
+        const proseImages = document.querySelectorAll(".prose-amigoer img");
+        proseImages.forEach(img => {
             if (img.parentElement.tagName === 'A') return;
-
             const wrapper = document.createElement('a');
             wrapper.href = img.src;
             wrapper.setAttribute('data-fancybox', 'gallery');
             wrapper.setAttribute('data-caption', img.alt || '');
-
             img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
         });
 
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            Thumbs: {
-                type: "classic"
-            },
+        // 通用配置 —— 文章 + 动态共用同一套工具栏
+        const fancyboxOptions = {
+            Thumbs: { type: "classic" },
             Toolbar: {
                 display: {
                     left: [],
@@ -38,7 +39,12 @@
                     right: ["slideshow", "fullscreen", "download", "thumbs", "close"],
                 },
             },
-        });
+        };
+
+        // 文章正文：所有图片合成一组
+        Fancybox.bind('[data-fancybox="gallery"]', fancyboxOptions);
+        // 动态：每条 moment 自己一组（data-fancybox 带 slug），用通配选择器统一绑定
+        Fancybox.bind('[data-fancybox^="moment-"]', fancyboxOptions);
     });
 </script>
 {{ end }}

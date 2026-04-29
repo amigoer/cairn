@@ -18,6 +18,7 @@
 
 - **杂志风首页** —— 个人刊头（头像 + 状态 + 社交 + 一句话），紧跟最近文章 feed，整页排得像一本季刊。
 - **内置内容架** —— `/projects/`、`/reading/`、`/watching/` 开箱即用；`/douban/` 把书与影聚合在一个 tab 切换页里。
+- **动态 / Moments** —— `/moments/` 朋友圈风格的微动态，支持纯文 / 多图九宫格 / 网易云音乐 / B 站 · YouTube 视频，按天分组展示。
 - **友链页** —— `/links/` 自带分类的友链网格 + 一张可一键复制的"我的名片"，方便对方申请时直接抄走。
 - **混合卡片系统** —— 文章 frontmatter 加一行 `cardSize: feature | standard | compact | note` 即可指定卡片样式，不写时智能推断。
 - **搜索** —— 内置 Pagefind 的 ⌘K 命令面板。
@@ -117,7 +118,8 @@ content/
 ├── projects/               # 项目
 ├── reading/                # 书
 ├── watching/               # 影
-└── travel/                 # （可选）旅行
+├── travel/                 # （可选）旅行
+└── moments/                # （可选）动态 · 朋友圈风格微动态
 
 data/
 └── links.yaml              # 友链数据源
@@ -141,11 +143,80 @@ static/
 | `projects/`  | `title`, `date`, `status`, `summary`, `tech[]`, `repo`, `homepage?` |
 | `reading/`   | `title`, `date`, `status`, `author`, `cover`, `rating`, `summary` |
 | `watching/`  | `title`, `date`, `status`, `director`, `poster`, `rating`, `summary` |
+| `moments/`   | `date`, `mood?`, `location?`, `device?`, `images?[]`, `music?`, `video?`, `comments?` |
 
 `status` 取值：
 - `projects`：`active` · `maintained` · `experimental` · `archived`
 - `reading`：`reading` · `finished` · `wishlist` · `abandoned`
 - `watching`：`watching` · `watched` · `wishlist` · `abandoned`
+
+## 动态 / Moments
+
+`/moments/` 是朋友圈风格的轻动态流，每条 = 一个 markdown 文件（或 page bundle 目录）。
+**有内容时**导航会自动出现「动态」入口，没有就隐藏。
+
+新建一条：
+
+```bash
+# 纯文字 / 单文件
+hugo new moments/2026-04-30-coffee.md
+
+# 带图片：建议用 page bundle，方便就近放图
+mkdir -p content/moments/2026-04-30-walk
+hugo new moments/2026-04-30-walk/index.md
+# 把图片直接拷到这个目录里
+cp ~/Pictures/*.jpg content/moments/2026-04-30-walk/
+```
+
+Frontmatter：
+
+```yaml
+---
+date: 2026-04-30T10:00:00+08:00
+mood: "☕️"                    # 可选 · emoji 或一两个字
+location: "杭州 · 西溪"        # 可选
+device: "MacBook Pro"         # 可选 · 发布设备小尾巴（自由文本，自动匹配图标）
+images:                       # 可选，page bundle 内的文件名
+  - 1.jpg
+  - 2.jpg
+music:                        # 可选 · 网易云 / Spotify
+  platform: "163"             # 163 | spotify
+  id: "1974443814"
+  type: "song"                # song | playlist | album（仅 163 用）
+video:                        # 可选 · B 站 / YouTube
+  platform: "bilibili"        # bilibili | youtube
+  id: "BV1uv411q7Mv"
+comments: true                # 可选，默认开（继承全站 Waline 配置）
+---
+
+正文支持 Markdown。
+```
+
+**图片网格规则**（朋友圈式）：
+
+| 张数 | 布局      |
+| ---- | --------- |
+| 1    | 单图大图  |
+| 2 / 4 | 2 列     |
+| 3, 5–9 | 3 列    |
+
+**`device` 设备小尾巴**：会在卡片右上角显示，带自动选择的图标。识别规则：
+
+| 字段值含 | 图标 |
+| --- | --- |
+| `iphone` / `android` / `phone` / `pixel` / `huawei` / `xiaomi` / `oneplus` | smartphone（手机） |
+| `ipad` | tablet（平板） |
+| `macbook` / `laptop` / `thinkpad` / `framework` | laptop（笔记本） |
+| 其它（包含 `web` / 自定义文字） | monitor（屏幕，兜底） |
+
+**正文里也能用 shortcode**（适合一条多媒体或穿插在文字中）：
+
+```text
+{{</* music-163 id="2147051091" */>}}
+{{</* music-163 id="123456" type="playlist" */>}}
+{{</* video-bilibili id="BV1uv411q7Mv" */>}}
+{{</* video-youtube id="dQw4w9WgXcQ" */>}}
+```
 
 ## 自定义
 

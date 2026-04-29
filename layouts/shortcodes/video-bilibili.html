@@ -1,0 +1,23 @@
+{{- /*
+  Bilibili 视频外链播放器
+  用法：
+    {{< video-bilibili id="BV1xx411c7mD" >}}
+    {{< video-bilibili id="BV1xx411c7mD" page="2" >}}
+    {{< video-bilibili id="BV1xx411c7mD" autoplay="1" danmaku="0" >}}
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- $page := .Get "page" | default "1" -}}
+{{- $autoplay := .Get "autoplay" | default "0" -}}
+{{- $danmaku := .Get "danmaku" | default "0" -}}
+{{- if $id -}}
+<div class="my-4 not-prose overflow-hidden rounded-md border border-border bg-black">
+  <div class="relative w-full" style="aspect-ratio: 16 / 9;">
+    <iframe class="absolute inset-0 size-full"
+            src="//player.bilibili.com/player.html?bvid={{ $id }}&page={{ $page }}&autoplay={{ $autoplay }}&danmaku={{ $danmaku }}&high_quality=1"
+            scrolling="no" border="0" frameborder="no" framespacing="0"
+            allowfullscreen="true" loading="lazy"
+            referrerpolicy="no-referrer"
+            title="Bilibili · {{ $id }}"></iframe>
+  </div>
+</div>
+{{- end -}}

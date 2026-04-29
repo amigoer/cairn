@@ -35,7 +35,7 @@
             <span class="font-bold tracking-tight text-[16px]">{{ .Site.Title }}</span>
           </a>
 
-          {{- /* 主导航：首页 / 项目 / 豆瓣 / 归档 / 关于 / 友链 */ -}}
+          {{- /* 主导航：首页 / 项目 / 豆瓣 / 归档 / 动态 / 关于 / 友链 */ -}}
           <nav class="hidden md:flex items-center gap-4 text-[14px]">
             {{- $current := .RelPermalink -}}
             {{- $items := slice
@@ -43,6 +43,14 @@
               (dict "url" "/projects/" "name" (i18n "navProjects"))
               (dict "url" "/douban/" "name" (i18n "navDouban"))
               (dict "url" "/archives/" "name" (i18n "navArchives"))
+            -}}
+            {{- /* 动态：仅当 /moments/ 区段有内容时显示 */ -}}
+            {{- with site.GetPage "/moments" -}}
+              {{- if gt (len .Pages) 0 -}}
+                {{- $items = $items | append (dict "url" "/moments/" "name" (i18n "navMoments")) -}}
+              {{- end -}}
+            {{- end -}}
+            {{- $items = $items | append
               (dict "url" "/about/" "name" (i18n "navAbout"))
               (dict "url" "/links/" "name" (i18n "navLinks"))
             -}}

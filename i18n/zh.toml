@@ -35,6 +35,9 @@ other = "影库"
 [navTravel]
 other = "旅行"
 
+[navMoments]
+other = "动态"
+
 [navOpenMenu]
 other = "打开菜单"
 
@@ -455,3 +458,25 @@ other = "找到 1 个「[SEARCH_TERM]」相关结果"
 
 [searchSearching]
 other = "搜索「[SEARCH_TERM]」…"
+
+# ===== 动态 / Moments =====
+[momentsLabel]
+other = "MOMENTS · 动态"
+
+[momentsTitle]
+other = "动态"
+
+[momentsSubtitle]
+other = "随手记下的片段 —— 一句话、几张图、一首歌、一段视频。"
+
+[momentsCount]
+other = "共 {{ .Count }} 条"
+
+[momentsEmpty]
+other = "还没有动态。"
+
+[momentPrev]
+other = "前一条"
+
+[momentNext]
+other = "后一条"

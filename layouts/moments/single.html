@@ -1,0 +1,49 @@
+{{ define "main" }}
+<article class="mx-auto max-w-2xl px-4 md:px-6 py-8 md:py-10 space-y-6">
+
+  <!-- 返回 -->
+  <div class="flex items-center justify-between">
+    <a href="{{ "/moments/" | relURL }}"
+       class="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">
+      <span>←</span>
+      <span>{{ i18n "momentsLabel" }}</span>
+    </a>
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}"
+          class="font-mono text-[11px] text-muted-foreground tabular-nums">
+      {{ .Date.Format "2006-01-02 15:04" }}
+    </time>
+  </div>
+
+  <!-- 单条卡片 -->
+  {{ partial "card-moment.html" . }}
+
+  <!-- 上下条 -->
+  {{ if or .NextInSection .PrevInSection }}
+    <nav class="grid gap-3 md:grid-cols-2 pt-4">
+      {{ with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="group rounded-md border border-border bg-card p-3 hover:border-foreground/20 transition-colors">
+          <div class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-mono">{{ i18n "momentPrev" }}</div>
+          <div class="text-xs text-muted-foreground group-hover:text-brand transition-colors line-clamp-2">
+            {{ .Date.Format "2006-01-02 15:04" }} · {{ .Plain | plainify | truncate 60 }}
+          </div>
+        </a>
+      {{ else }}
+        <div></div>
+      {{ end }}
+      {{ with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="group rounded-md border border-border bg-card p-3 hover:border-foreground/20 transition-colors text-right">
+          <div class="text-[10px] uppercase tracking-wider text-muted-foreground mb-1 font-mono">{{ i18n "momentNext" }}</div>
+          <div class="text-xs text-muted-foreground group-hover:text-brand transition-colors line-clamp-2">
+            {{ .Date.Format "2006-01-02 15:04" }} · {{ .Plain | plainify | truncate 60 }}
+          </div>
+        </a>
+      {{ end }}
+    </nav>
+  {{ end }}
+
+  <!-- 评论（可被 frontmatter comments=false 关闭） -->
+  {{ if ne .Params.comments false }}
+    {{ partial "waline.html" . }}
+  {{ end }}
+</article>
+{{ end }}

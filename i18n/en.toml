@@ -35,6 +35,9 @@ other = "Watching"
 [navTravel]
 other = "Travel"
 
+[navMoments]
+other = "Moments"
+
 [navOpenMenu]
 other = "Open menu"
 
@@ -455,3 +458,25 @@ other = "1 result for \"[SEARCH_TERM]\""
 
 [searchSearching]
 other = "Searching for \"[SEARCH_TERM]\"…"
+
+# ===== Moments =====
+[momentsLabel]
+other = "MOMENTS"
+
+[momentsTitle]
+other = "Moments"
+
+[momentsSubtitle]
+other = "Small fragments — a thought, a few photos, a song, a clip."
+
+[momentsCount]
+other = "{{ .Count }} moments"
+
+[momentsEmpty]
+other = "No moments yet."
+
+[momentPrev]
+other = "Previous"
+
+[momentNext]
+other = "Next"

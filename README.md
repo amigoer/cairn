@@ -17,6 +17,7 @@ An *almanac* is a yearly book — a record of dates, observations and small mark
 
 - **Editorial homepage** — Magazine-style hero with avatar, status pill, social row and tagline; followed by a configurable "recent posts" feed.
 - **Built-in shelves** — `/projects/`, `/reading/`, `/watching/` come ready-made; `/douban/` aggregates books + movies behind a tab switcher.
+- **Moments** — `/moments/` is a WeChat-Moments-style micro stream: text-only thoughts, photo grids (1 / 2-4 / 5-9 layouts), NetEase Cloud / Spotify embeds, Bilibili / YouTube embeds, grouped by day.
 - **Friend links** — `/links/` ships with a categorised friend grid plus a "my info" name-card people can copy when applying.
 - **Mixed card system** — `cardSize: feature | standard | compact | note` per-post, with a smart automatic fallback when omitted.
 - **Search** — Pagefind-powered ⌘K command palette out of the box.
@@ -116,7 +117,8 @@ content/
 ├── projects/               # GitHub-style project shelf
 ├── reading/                # Books
 ├── watching/               # Movies / shows
-└── travel/                 # (optional) travel notes
+├── travel/                 # (optional) travel notes
+└── moments/                # (optional) Moments — micro stream
 
 data/
 └── links.yaml              # Friend links source
@@ -140,11 +142,79 @@ Almanac provides `archetypes/` for the four custom sections. After `theme = 'alm
 | `projects/`  | `title`, `date`, `status`, `summary`, `tech[]`, `repo`, `homepage?` |
 | `reading/`   | `title`, `date`, `status`, `author`, `cover`, `rating`, `summary` |
 | `watching/`  | `title`, `date`, `status`, `director`, `poster`, `rating`, `summary` |
+| `moments/`   | `date`, `mood?`, `location?`, `device?`, `images?[]`, `music?`, `video?`, `comments?` |
 
 Status values:
 - `projects`: `active` · `maintained` · `experimental` · `archived`
 - `reading`: `reading` · `finished` · `wishlist` · `abandoned`
 - `watching`: `watching` · `watched` · `wishlist` · `abandoned`
+
+## Moments
+
+`/moments/` is a WeChat-Moments-style micro stream where each entry is one markdown file (or page bundle).
+The "Moments" nav link **appears automatically** when the section has at least one entry, and disappears otherwise.
+
+Create one:
+
+```bash
+# Plain text · single file
+hugo new moments/2026-04-30-coffee.md
+
+# With images · use a page bundle so files live next to the post
+mkdir -p content/moments/2026-04-30-walk
+hugo new moments/2026-04-30-walk/index.md
+cp ~/Pictures/*.jpg content/moments/2026-04-30-walk/
+```
+
+Frontmatter:
+
+```yaml
+---
+date: 2026-04-30T10:00:00+08:00
+mood: "☕️"                    # optional · emoji or short tag
+location: "Hangzhou · Xixi"   # optional
+device: "MacBook Pro"         # optional · "posted from" badge (free text, icon auto-detected)
+images:                       # optional · file names inside the page bundle
+  - 1.jpg
+  - 2.jpg
+music:                        # optional · NetEase Cloud / Spotify
+  platform: "163"             # 163 | spotify
+  id: "1974443814"
+  type: "song"                # song | playlist | album (163 only)
+video:                        # optional · Bilibili / YouTube
+  platform: "bilibili"        # bilibili | youtube
+  id: "BV1uv411q7Mv"
+comments: true                # optional, defaults to true (uses site Waline)
+---
+
+Body text supports Markdown.
+```
+
+**Image grid layout** (WeChat-style):
+
+| Count | Layout         |
+| ----- | -------------- |
+| 1     | Single hero    |
+| 2 / 4 | 2 columns      |
+| 3, 5–9 | 3 columns     |
+
+**`device` badge** appears at the top-right of the card with an auto-picked icon:
+
+| Field contains | Icon |
+| --- | --- |
+| `iphone` / `android` / `phone` / `pixel` / `huawei` / `xiaomi` / `oneplus` | smartphone |
+| `ipad` | tablet |
+| `macbook` / `laptop` / `thinkpad` / `framework` | laptop |
+| anything else (incl. `web` / custom strings) | monitor (fallback) |
+
+**Shortcodes for embeds inline in the body** (useful for multi-media moments or media interleaved with text):
+
+```text
+{{</* music-163 id="2147051091" */>}}
+{{</* music-163 id="123456" type="playlist" */>}}
+{{</* video-bilibili id="BV1uv411q7Mv" */>}}
+{{</* video-youtube id="dQw4w9WgXcQ" */>}}
+```
 
 ## Customisation
 
