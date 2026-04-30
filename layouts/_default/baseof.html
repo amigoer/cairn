@@ -21,8 +21,6 @@
   {{- $position := .Site.Params.position | default "" -}}
   {{- $location := .Site.Params.location | default "" -}}
   {{- $statusText := .Site.Params.statusText | default "" -}}
-  {{- $github := "" -}}
-  {{- range .Site.Params.socialIcons }}{{ if eq .name "github" }}{{ $github = .url }}{{ end }}{{ end -}}
   {{- $navMain := slice
     (dict "url" "/" "name" (i18n "navHome") "icon" "rocket")
     (dict "url" "/projects/" "name" (i18n "navProjects") "icon" "folder")
@@ -37,6 +35,7 @@
   {{- $navMain = $navMain | append
     (dict "url" "/about/" "name" (i18n "navAbout") "icon" "user")
     (dict "url" "/links/" "name" (i18n "navLinks") "icon" "external-link")
+    (dict "url" "/resume/" "name" (i18n "navResume") "icon" "id-card")
   -}}
   <div x-data x-cloak class="md:hidden">
     <div x-show="$store.sheet.open" @click="$store.sheet.close()" x-transition.opacity
@@ -97,31 +96,6 @@
             <span>{{ .name }}</span>
           </a>
         {{ end }}
-      </nav>
-
-      <!-- 次级 -->
-      <nav class="px-3 py-3 border-t border-border">
-        <div class="px-2 mb-1.5 text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground">{{ i18n "navLinksGroup" }}</div>
-        {{- with $github }}
-          <a href="{{ . }}" target="_blank" rel="noopener" @click="$store.sheet.close()"
-             class="group flex items-center gap-3 px-2 py-2.5 rounded-md text-[15px] text-foreground/85 hover:text-foreground hover:bg-accent transition-colors">
-            <span class="text-muted-foreground group-hover:text-foreground transition-colors">
-              {{ partial "icon.html" (dict "name" "github" "class" "size-4") }}
-            </span>
-            <span class="flex-1">GitHub</span>
-            <span class="text-muted-foreground/60">
-              {{ partial "icon.html" (dict "name" "external-link" "class" "size-3") }}
-            </span>
-          </a>
-        {{- end }}
-        {{- $isResume := strings.HasPrefix $current "/resume" -}}
-        <a href="{{ "/resume/" | relURL }}" @click="$store.sheet.close()"
-           class="group flex items-center gap-3 px-2 py-2.5 rounded-md text-[15px] {{ if $isResume }}text-brand bg-accent/40 font-medium{{ else }}text-foreground/85 hover:text-foreground hover:bg-accent{{ end }} transition-colors">
-          <span class="{{ if $isResume }}text-brand{{ else }}text-muted-foreground group-hover:text-foreground{{ end }} transition-colors">
-            {{ partial "icon.html" (dict "name" "id-card" "class" "size-4") }}
-          </span>
-          <span>{{ i18n "navResume" }}</span>
-        </a>
       </nav>
 
       <!-- 底部：社交 + 版权 -->

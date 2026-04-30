@@ -56,9 +56,6 @@ other = "Subscribe"
 [navClose]
 other = "Close"
 
-[navLinksGroup]
-other = "Links"
-
 [sidebarNav]
 other = "Navigation"
 
