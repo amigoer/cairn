@@ -22,17 +22,19 @@
   <!-- 订阅地址卡 -->
   <section class="rounded-lg border border-border bg-card p-5">
     <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-2">{{ i18n "feedUrl" }}</div>
-    <div class="flex items-center gap-2 flex-wrap">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:flex-wrap">
       <code class="flex-1 min-w-0 font-mono text-[13px] text-foreground bg-background border border-border rounded px-3 py-2 break-all" id="feed-url">{{ $rssURL | absURL }}</code>
-      <button type="button" data-copied-label="{{ i18n "copied" }}" data-default-label="{{ i18n "copy" }}"
-              class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors"
-              onclick="navigator.clipboard.writeText(document.getElementById('feed-url').textContent).then(() => { const def = this.dataset.defaultLabel; this.textContent = this.dataset.copiedLabel; setTimeout(() => this.innerHTML = '<span>' + def + '</span>', 1500); })">
-        <span>{{ i18n "copy" }}</span>
-      </button>
-      <a href="{{ $rssURL }}" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors">
-        {{ i18n "feedViewRaw" }}
-      </a>
+      <div class="flex gap-2">
+        <button type="button" data-copied-label="{{ i18n "copied" }}" data-default-label="{{ i18n "copy" }}"
+                class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors"
+                onclick="navigator.clipboard.writeText(document.getElementById('feed-url').textContent).then(() => { const def = this.dataset.defaultLabel; this.textContent = this.dataset.copiedLabel; setTimeout(() => this.innerHTML = '<span>' + def + '</span>', 1500); })">
+          <span>{{ i18n "copy" }}</span>
+        </button>
+        <a href="{{ $rssURL }}" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors">
+          {{ i18n "feedViewRaw" }}
+        </a>
+      </div>
     </div>
   </section>
 
