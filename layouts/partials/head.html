@@ -46,9 +46,12 @@
 <meta name="twitter:description" content="{{ $desc }}">
 {{ with $ogImage }}<meta name="twitter:image" content="{{ . }}">{{ end }}
 
-{{- /* RSS */ -}}
+{{- /* RSS / Atom */ -}}
 {{ with .OutputFormats.Get "rss" }}
   <link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ $.Site.Title }}">
+{{ end }}
+{{ with .OutputFormats.Get "atom" }}
+  <link rel="alternate" type="application/atom+xml" href="{{ .RelPermalink }}" title="{{ $.Site.Title }}">
 {{ end }}
 
 {{- /* JSON-LD 结构化数据（文章页） */ -}}
