@@ -24,25 +24,45 @@
     </p>
   </section>
 
-  <!-- 订阅地址卡 -->
-  <section class="rounded-lg border border-border bg-card p-5 divide-y divide-border">
-    {{ range $i, $feed := $feeds }}
-      <div class="{{ if gt $i 0 }}pt-4 mt-4{{ end }}">
-        <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-muted-foreground mb-2">{{ $feed.label }} · {{ i18n "feedUrl" }}</div>
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:flex-wrap">
-          <code class="flex-1 min-w-0 font-mono text-[13px] text-foreground bg-background border border-border rounded px-3 py-2 break-all" id="{{ $feed.id }}">{{ $feed.url | absURL }}</code>
-          <div class="flex gap-2">
-            <button type="button" data-target="{{ $feed.id }}" data-copied-label="{{ i18n "copied" }}" data-default-label="{{ i18n "copy" }}"
-                    class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors"
-                    onclick="navigator.clipboard.writeText(document.getElementById(this.dataset.target).textContent).then(() => { const def = this.dataset.defaultLabel; this.textContent = this.dataset.copiedLabel; setTimeout(() => this.innerHTML = '<span>' + def + '</span>', 1500); })">
-              <span>{{ i18n "copy" }}</span>
-            </button>
-            <a href="{{ $feed.url }}" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-1.5 h-9 px-3 rounded-md border border-border bg-background hover:border-foreground/30 hover:bg-accent text-xs font-mono text-foreground transition-colors">
-              {{ i18n "feedViewRaw" }}
-            </a>
-          </div>
-        </div>
+  <!-- 订阅地址卡（分段控制器 + 一体化 URL bar） -->
+  <section x-data="{ active: 'rss', copied: false }"
+           class="rounded-xl border border-border bg-card p-5 sm:p-6 space-y-4">
+    <!-- Segmented control -->
+    <div class="grid grid-cols-2 sm:inline-grid sm:grid-flow-col sm:auto-cols-fr p-1 rounded-full bg-muted/60 gap-0.5">
+      {{ range $feed := $feeds }}
+        {{- $key := lower $feed.label -}}
+        <button type="button"
+                @click="active = '{{ $key }}'; copied = false"
+                :class="active === '{{ $key }}'
+                  ? 'bg-card text-foreground shadow-sm'
+                  : 'text-muted-foreground hover:text-foreground'"
+                class="inline-flex items-center justify-center gap-1.5 px-5 sm:px-6 py-1.5 rounded-full text-[12px] font-mono font-semibold uppercase tracking-[0.18em] transition-colors">
+          {{ partial "icon.html" (dict "name" (cond (eq $key "rss") "rss" "atom") "class" "size-3.5") }}
+          <span>{{ $feed.label }}</span>
+        </button>
+      {{ end }}
+    </div>
+
+    <!-- URL bar (input-group: code + icon buttons in one bordered container) -->
+    {{ range $feed := $feeds }}
+      {{- $key := lower $feed.label -}}
+      <div x-show="active === '{{ $key }}'" x-cloak
+           class="flex items-stretch rounded-lg border border-border bg-background overflow-hidden focus-within:border-foreground/30 transition-colors">
+        <code class="flex-1 min-w-0 self-center px-3.5 py-2.5 font-mono text-[12.5px] sm:text-[13px] text-foreground truncate" id="feed-url-{{ $key }}">{{ $feed.url | absURL }}</code>
+        <button type="button"
+                title="{{ i18n "copy" }}"
+                aria-label="{{ i18n "copy" }}"
+                @click="navigator.clipboard.writeText(document.getElementById('feed-url-{{ $key }}').textContent); copied = true; setTimeout(() => copied = false, 1500)"
+                class="shrink-0 inline-flex items-center justify-center w-12 border-l border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
+          <span x-show="!copied">{{ partial "icon.html" (dict "name" "copy" "class" "size-4") }}</span>
+          <span x-show="copied" x-cloak class="text-success">{{ partial "icon.html" (dict "name" "check" "class" "size-4") }}</span>
+        </button>
+        <a href="{{ $feed.url }}" target="_blank" rel="noopener"
+           title="{{ i18n "feedViewRaw" }}"
+           aria-label="{{ i18n "feedViewRaw" }}"
+           class="shrink-0 inline-flex items-center justify-center w-12 border-l border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
+          {{ partial "icon.html" (dict "name" "external-link" "class" "size-4") }}
+        </a>
       </div>
     {{ end }}
   </section>
